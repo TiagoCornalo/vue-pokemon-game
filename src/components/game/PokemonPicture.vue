@@ -1,15 +1,15 @@
 <template>
   <div class="pokemon-container">
     <Skeleton v-if="loading" class="w-[200px] h-[200px]" />
-    <div v-else class="picture-container">
+    <template v-else>
       <img :src="pokemonImage" alt="Pokemon" class="hidden-pokemon" />
       <img v-if="showPokemon" :src="pokemonImage" alt="Pokemon" class="fade-in" />
-    </div>
+    </template>
   </div>
 </template>
 
 <script lang="ts">
-import { Skeleton } from '.'
+import { Skeleton } from '@/components'
 
 export default {
   components: {
@@ -19,7 +19,8 @@ export default {
   props: {
     pokemonId: {
       type: Number,
-      required: true
+      required: true,
+      default: 0
     },
     showPokemon: {
       type: Boolean,
@@ -41,15 +42,11 @@ export default {
 
 <style scoped>
 .pokemon-container {
+  align-items: center;
   display: flex;
   height: 200px;
-  margin: 20px 0;
-}
-
-.picture-container {
-  display: flex;
   justify-content: center;
-  align-items: center;
+  margin: 20px 0;
 }
 
 img {
